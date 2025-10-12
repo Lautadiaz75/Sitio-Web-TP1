@@ -1,0 +1,326 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+p {
+    color: black;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.5px;
+    background-color: black;
+    z-index: 1000;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    display: inline-block;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 20px;
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.hero {
+    text-align: center;
+    padding: 30px;
+    background-color: #fcfaf8;
+}
+
+.hero img {
+    margin: 15px;
+}
+
+.marcas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.marca_xerjoff, .marca_initio, .marca_bond {
+    text-align: center;
+    background-color: black;
+}
+
+.marca_nishane, .marca_clive {
+    text-align: center;
+}
+
+.marca_xerjoff img { display: inline-block; margin: 10px; width: 250px; }
+.marca_xerjoff h1 img { width: 400px; }
+
+.marca_nishane img { display: inline-block; margin: 20px; margin-bottom: 30px; width: 260px; }
+.marca_nishane h1 img { width: 400px; }
+
+.marca_initio img { display: inline-block; margin: 0px; width: 300px; }
+.marca_initio h1 img { width: 350px; margin: 20px; }
+
+.marca_clive img { display: inline-block; margin: 10px; width: 275px; }
+.marca_clive h1 img { width: 400px; }
+
+.marca_bond img { display: inline-block; margin: 0px; width: 300px; }
+.marca_bond h1 img { width: 350px; margin: 20px; }
+
+.local h2 { margin: 20px; text-align: center; font-size: 40px; }
+.local iframe { display: block; margin: auto; border: 2px solid black; border-radius: 10px; max-width: 100%; }
+.local p { text-align: center; margin: 20px; font-size: 25px; }
+
+.galeria { display: flex; justify-content: center; align-items: center; margin: 20px; flex-wrap: wrap; }
+.galeria img { width: 400px; margin: 10px; }
+.galeria p { width: 100%; max-width: 800px; margin: 10px; font-size: 25px; text-align: center; }
+
+.contacto { text-align: center; }
+.contacto h1 { font-size: 40px; margin: 20px; }
+.contacto p { font-size: 20px; margin: 10px; }
+.contacto img { margin: 10px; }
+
+.product-page {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.product-page h1 {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #2c2c2c;
+}
+
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: 280px;
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background-color: #f0f0f0;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-out;
+}
+
+.product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    box-sizing: border-box;
+}
+
+.product-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+}
+
+.product-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card:hover .product-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-tall { grid-row: span 2; }
+.card-large { grid-column: span 2; grid-row: span 2; }
+
+
+@media (max-width: 768px) {
+    body {
+        margin-left: 160px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 160px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .logo {
+        margin: 20px auto;
+    }
+
+    nav {
+        width: 100%;
+        text-align: left;
+    }
+
+    nav ul {
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+        font-size: 20px;
+        background: none;
+        border-radius: 0;
+        padding: 15px 20px;
+    }
+
+    nav ul li a {
+        color: white;
+        width: 100%;
+        display: block;
+    }
+
+    .galeria {
+        flex-direction: column;
+    }
+
+    .local h2, .contacto h1 {
+        font-size: 30px;
+    }
+
+    .local p, .galeria p, .contacto p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+    
+    .navbar {
+        flex-direction: row; 
+        height: auto;
+        width: 100%;
+        position: fixed;
+    }
+
+    nav ul li {
+        font-size: 16px;
+        padding: 10px;
+        margin: 0 5px;
+    }
+
+    .product-page h1 {
+        font-size: 2.5rem;
+    }
+
+    .product-gallery {
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 250px;
+    }
+
+    .card-large, .card-tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+.simple-footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.footer-features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+}
+
+.footer-feature {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-feature img {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.footer-feature p {
+    color: #a0a0a0;
+    font-size: 1rem;
+}
+
+.footer-bottom h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 30px 0 10px 0;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+}
+
+.footer-bottom p {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+}
