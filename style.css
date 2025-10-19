@@ -7,6 +7,9 @@
 
 body {
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 100% de la altura del Viewport (ventana) */
 }
 
 a {
@@ -103,7 +106,7 @@ nav ul li {
 .contacto { text-align: center; }
 .contacto h1 { font-size: 40px; margin: 20px; }
 .contacto p { font-size: 20px; margin: 10px; }
-.contacto img { margin: 10px; }
+.contacto img { margin: 0px; }
 
 .product-page {
     max-width: 1400px;
@@ -183,7 +186,219 @@ nav ul li {
 
 .card-tall { grid-row: span 2; }
 .card-large { grid-column: span 2; grid-row: span 2; }
+/* Contenedor principal de la sección */
+.cuponera-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 80px; 
+}
 
+.cuponera-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Grilla para los cupones */
+.cuponera-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Estilo de cada cupón */
+.cupon {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border-left: 10px solid #d4af37; /* Un acento de color (dorado) */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cupon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.cupon-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.cupon-info h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.cupon-info p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Sección del botón y código */
+.cupon-accion {
+  background-color: #f4f4f4;
+  padding: 15px 20px;
+  border-top: 2px dashed #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-copiar {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-copiar:hover {
+  background-color: #d4af37; /* Dorado al pasar el mouse */
+  color: #000;
+}
+
+/* Estilos para el feedback "¡Copiado!" */
+.btn-copiar .texto-copiado {
+  display: none; /* Oculto por defecto */
+}
+
+.btn-copiar.copiado {
+  background-color: #28a745; /* Verde de éxito */
+}
+
+.btn-copiar.copiado span {
+  display: none; /* Oculta el código */
+}
+
+.btn-copiar.copiado .texto-copiado {
+  display: inline; /* Muestra "¡Copiado!" */
+}
+
+section.cuponera-container {
+  flex-grow: 1;
+}
+
+/* ============================================= */
+/* ESTILOS CALCULADORA DE PROMOCIONES       */
+/* ============================================= */
+.calculadora-promo {
+  max-width: 500px;
+  margin: 40px auto; /* Centra la calculadora y le da espacio */
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.calculadora-promo h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.calculadora-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+#btn-calcular {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#btn-calcular:hover {
+  background-color: #d4af37;
+  color: #000;
+}
+
+#resultado-calculadora {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-left: 5px solid #28a745; /* Acento verde de éxito */
+  transition: opacity 0.5s ease;
+}
+
+/* Clase para ocultar/mostrar el resultado con una transición */
+.resultado-oculto {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0 15px;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+#resultado-calculadora p {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+#resultado-calculadora h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+#resultado-calculadora span {
+  font-weight: bold;
+}
 
 @media (max-width: 768px) {
     body {
@@ -299,12 +514,6 @@ nav ul li {
     min-width: 220px;
 }
 
-.footer-feature img {
-    width: 35px;
-    height: 35px;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
 
 .footer-feature p {
     color: #a0a0a0;
