@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Función para mostrar el Toast corregido
+// Función para mostrar el Toast
 function mostrarToast(mensaje) {
     const toast = document.getElementById("toast");
     
