@@ -35,24 +35,28 @@ document.addEventListener('DOMContentLoaded', function() {
     botonesCopiar.forEach(function(boton) {
         boton.addEventListener('click', function() {
             const codigo = boton.dataset.codigo;
+            
+            // Copiar al portapapeles
             navigator.clipboard.writeText(codigo).then(() => {
-                mostrarNotificacion(`Cupón "${codigo}" copiado`);
+                mostrarToast(`Código ${codigo} copiado`);
             });
         });
     });
 });
 
-// Función para mostrar la cajita flotante
-function mostrarNotificacion(mensajeTexto) {
-    const toast = document.getElementById("toast-notification");
-    const texto = document.getElementById("toast-text");
+// Función para mostrar el Toast corregido
+function mostrarToast(mensaje) {
+    const toast = document.getElementById("toast");
     
-    texto.textContent = mensajeTexto;
-    toast.className = "toast-visible"; // Mostrar
+    // 1. Poner el texto
+    toast.textContent = mensaje;
+    
+    // 2. Agregar la clase que lo hace visible
+    toast.className = "mostrar";
 
-    // Ocultar después de 3 segundos
-    setTimeout(function() { 
-        toast.className = "toast-oculto"; 
+    // 3. Quitar la clase después de 3 segundos (3000ms)
+    setTimeout(function(){ 
+        toast.className = toast.className.replace("mostrar", ""); 
     }, 3000);
 }
 

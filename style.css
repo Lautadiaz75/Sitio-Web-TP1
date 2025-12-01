@@ -601,29 +601,42 @@ section.cuponera-container {
 .oculto { display: none; }
 
 /* --- ESTILOS DE NOTIFICACIÓN FLOTANTE (TOAST) --- */
-.toast-oculto {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #333;
-    color: #fff;
+#toast {
+    visibility: hidden; /* Oculto por defecto */
+    min-width: 200px;   /* Tamaño mínimo chiquito */
+    background-color: #333; /* Fondo oscuro */
+    color: #fff;        /* Texto blanco */
     text-align: center;
-    border-radius: 5px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1000;
-    left: 30px; /* A la izquierda */
-    bottom: 30px;
-    font-size: 17px;
-    opacity: 0;
-    transition: opacity 0.5s, bottom 0.5s;
+    border-radius: 50px; /* Bordes bien redondeados (tipo pastilla) */
+    padding: 12px 20px;  /* Espacio interno para que no sea una línea */
+    
+    /* POSICIONAMIENTO FIJO (Clave para que te siga) */
+    position: fixed; 
+    z-index: 9999;       /* Encima de todo, incluso del menú */
+    left: 50%;           /* Centrado horizontalmente */
+    bottom: 30px;        /* A 30px del piso de la pantalla */
+    transform: translateX(-50%); /* Ajuste fino para centrar */
+    
+    font-size: 14px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3); /* Sombrita para resaltar */
 }
 
-.toast-visible {
+/* Clase para mostrarlo (Animación) */
+#toast.mostrar {
     visibility: visible;
-    opacity: 1;
-    bottom: 50px; /* Pequeña animación hacia arriba */
+    animation: fadein 0.5s, fadeout 0.5s 2.5s; /* Entra en 0.5s, sale a los 2.5s */
 }
 
+/* Definición de la animación de entrada y salida */
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
 /* --- AJUSTES DE LAS TARJETAS CON FOTOS --- */
 .card-promo {
     width: 220px;
