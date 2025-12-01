@@ -26,75 +26,121 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 }); 
-// ⬆️ IMPORTANTE: Aquí se cierra el evento de carga (DOMContentLoaded)
+// ==========================================
+//   PARTE 1: LÓGICA DE COPIAR (NOTIFICACIÓN FLOTANTE)
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const botonesCopiar = document.querySelectorAll('.btn-copiar');
 
+    botonesCopiar.forEach(function(boton) {
+        boton.addEventListener('click', function() {
+            const codigo = boton.dataset.codigo;
+            navigator.clipboard.writeText(codigo).then(() => {
+                mostrarNotificacion(`Cupón "${codigo}" copiado`);
+            });
+        });
+    });
+});
+
+// Función para mostrar la cajita flotante
+function mostrarNotificacion(mensajeTexto) {
+    const toast = document.getElementById("toast-notification");
+    const texto = document.getElementById("toast-text");
+    
+    texto.textContent = mensajeTexto;
+    toast.className = "toast-visible"; // Mostrar
+
+    // Ocultar después de 3 segundos
+    setTimeout(function() { 
+        toast.className = "toast-oculto"; 
+    }, 3000);
+}
 
 // ==========================================
-//   PARTE 2: LÓGICA DEL MINI CARRITO
-//   (Funciones globales para los onclick)
+//   PARTE 2: LÓGICA DEL CARRITO CON CANTIDADES
 // ==========================================
 
-let carritoTotal = 0;
-let descuentoActivo = 0; 
+// Base de datos de precios (debe coincidir con HTML)
+const precios = {
+    'alexandria': 120000,
+    'nefs': 95000,
+    'hacivat': 80000,
+    'erbapura': 110000,
+    'oud': 130000,
+    'bleecker': 105000
+};
 
-// Función llamada desde el HTML al tocar "Agregar +"
-function agregarAlCarrito(precio) {
-    carritoTotal += precio;
+// Estado del carrito: { 'alexandria': 2, 'nefs': 0 ... }
+let carrito = {
+    'alexandria': 0,
+    'nefs': 0,
+    'hacivat': 0,
+    'erbapura': 0,
+    'oud': 0,
+    'bleecker': 0
+};
+
+let descuentoActivo = 0; // Porcentaje (0, 10, 20)
+
+// Función para sumar (+) o restar (-) cantidad
+function cambiarCantidad(idProducto, cantidad) {
+    // Evitar negativos
+    if (carrito[idProducto] + cantidad < 0) return;
+
+    carrito[idProducto] += cantidad;
+
+    // Actualizar el numerito en la tarjeta
+    document.getElementById(`qty-${idProducto}`).textContent = carrito[idProducto];
+
     actualizarInterfaz();
 }
 
-// Función llamada desde los botones de cupones
 function aplicarCupon(porcentaje) {
-    if (carritoTotal === 0) {
-        alert("¡Tu carrito está vacío! Agrega perfumes primero.");
+    const totalItems = Object.values(carrito).reduce((a, b) => a + b, 0);
+    
+    if (totalItems === 0) {
+        alert("El carrito está vacío.");
         return;
     }
-    
+
     descuentoActivo = porcentaje;
     
-    // Mostramos el mensaje de descuento
-    const mensaje = document.getElementById('msg-descuento');
-    if (mensaje) {
-        mensaje.classList.remove('oculto');
-    }
-    
+    document.getElementById('msg-descuento').classList.remove('oculto');
     actualizarInterfaz();
-    alert(`¡Genial! Se aplicó un ${porcentaje}% de descuento.`);
+    
+    // Usamos la misma notificación flotante para confirmar
+    mostrarNotificacion(`Descuento del ${porcentaje}% aplicado`);
 }
 
-// Función para reiniciar todo
 function vaciarCarrito() {
-    carritoTotal = 0;
-    descuentoActivo = 0;
-    
-    const mensaje = document.getElementById('msg-descuento');
-    if (mensaje) {
-        mensaje.classList.add('oculto');
+    // Reiniciar contadores a 0
+    for (let id in carrito) {
+        carrito[id] = 0;
+        document.getElementById(`qty-${id}`).textContent = 0;
     }
     
+    descuentoActivo = 0;
+    document.getElementById('msg-descuento').classList.add('oculto');
     actualizarInterfaz();
 }
 
-// Función central que hace los cálculos y actualiza el texto
 function actualizarInterfaz() {
-    // 1. Cálculos matemáticos
-    const montoAhorrado = carritoTotal * (descuentoActivo / 100);
-    const precioFinal = carritoTotal - montoAhorrado;
+    // 1. Calcular Subtotal sumando (precio * cantidad) de cada uno
+    let subtotal = 0;
+    for (let id in carrito) {
+        subtotal += carrito[id] * precios[id];
+    }
 
-    // 2. Formateador para que se vea como moneda Argentina ($1.000,00)
+    // 2. Calcular Descuento
+    const montoAhorrado = subtotal * (descuentoActivo / 100);
+    const precioFinal = subtotal - montoAhorrado;
+
+    // 3. Formatear y mostrar
     const formateador = new Intl.NumberFormat('es-AR', { 
-        style: 'currency', 
-        currency: 'ARS',
-        minimumFractionDigits: 0 
+        style: 'currency', currency: 'ARS', minimumFractionDigits: 0 
     });
 
-    // 3. Escribir en el HTML
-    // Usamos 'getElementById' asegurándonos de que existan en el nuevo HTML
-    const subtotalEl = document.getElementById('subtotal');
-    const descuentoEl = document.getElementById('monto-descuento');
-    const totalEl = document.getElementById('total-final');
-
-    if (subtotalEl) subtotalEl.textContent = formateador.format(carritoTotal);
-    if (descuentoEl) descuentoEl.textContent = "-" + formateador.format(montoAhorrado);
-    if (totalEl) totalEl.textContent = formateador.format(precioFinal);
+    document.getElementById('subtotal').textContent = formateador.format(subtotal);
+    document.getElementById('monto-descuento').textContent = "-" + formateador.format(montoAhorrado);
+    document.getElementById('total-final').textContent = formateador.format(precioFinal);
 }

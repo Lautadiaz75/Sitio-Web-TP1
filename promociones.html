@@ -7,10 +7,13 @@
     <title>Perfumeria | Promociones</title>
 </head>
 <body>
-    
+    <div id="toast-notification" class="toast-oculto">
+        <span id="toast-text">Cupón copiado</span>
+    </div>
+
     <div class="navbar">
         <div class="logo">
-            <img src="imagenes\Landing Page\minilogo2.png" alt="logo" width="75px">
+            <img src="imagenes/Landing Page/minilogo2.png" alt="logo" width="75px">
         </div>
         <nav>
             <ul>
@@ -24,7 +27,6 @@
     </div>
 
     <section id="promociones" class="cuponera-container">
-        
         <div class="promo-header">
             <img src="imagenes/Landing Page/Banner.jpg" alt="Banner de Promociones">
         </div>
@@ -32,91 +34,148 @@
         <h2>Nuestras Promociones Exclusivas</h2>
         
         <div class="cuponera-grid">
-
             <div class="cupon">
                 <div class="cupon-info">
-                    <h3>10% OFF en Fragancias Florales</h3>
-                    <p>Usa este código para obtener un 10% de descuento en tu próxima compra de cualquier perfume floral.</p>
+                    <h3>10% OFF Floral</h3>
+                    <p>Descuento en fragancias florales.</p>
                 </div>
                 <div class="cupon-accion">
-                    <button class="btn-copiar" data-codigo="FLORAL10">
-                        <span>FLORAL10</span>
-                        <span class="texto-copiado">¡Copiado!</span>
-                    </button>
+                    <button class="btn-copiar" data-codigo="FLORAL10">COPIAR CÓDIGO</button>
                 </div>
             </div>
-
             <div class="cupon">
                 <div class="cupon-info">
                     <h3>Envío Gratis</h3>
-                    <p>Envío gratis en todas las compras superiores a $50.000. El descuento se aplica automáticamente al finalizar la compra.</p>
+                    <p>En compras superiores a $50.000.</p>
                 </div>
                 <div class="cupon-accion">
-                    <button class="btn-copiar" data-codigo="ENVIOGRATIS">
-                        <span>ENVIOGRATIS</span>
-                        <span class="texto-copiado">¡Copiado!</span>
-                    </button>
+                    <button class="btn-copiar" data-codigo="ENVIOGRATIS">COPIAR CÓDIGO</button>
                 </div>
             </div>
-
             <div class="cupon">
                 <div class="cupon-info">
-                    <h3>20% OFF en Marcas Seleccionadas</h3>
-                    <p>Aprovecha un 20% de descuento en marcas como Chanel y Dior. ¡Stock limitado!</p>
+                    <h3>20% OFF Lujo</h3>
+                    <p>Descuento en marcas seleccionadas.</p>
                 </div>
                 <div class="cupon-accion">
-                    <button class="btn-copiar" data-codigo="LUJO20">
-                        <span>LUJO20</span>
-                        <span class="texto-copiado">¡Copiado!</span>
-                    </button>
+                    <button class="btn-copiar" data-codigo="LUJO20">COPIAR CÓDIGO</button>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section class="mini-shop-container">
-        <h2>Arma tu pedido y aplica tu cupón</h2>
+        <h2>Arma tu pedido</h2>
 
         <div class="productos-promo-grid">
-            <div class="card-promo" data-price="120000">
+            
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Xerjoff/Alexandria II.jpg" alt="Alexandria II">
                 <h4>Alexandria II</h4>
-                <p>Precio: $120.000</p>
-                <button class="btn-add" onclick="agregarAlCarrito(120000)">Agregar +</button>
+                <p class="precio">$120.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('alexandria', -1)">-</button>
+                    <span id="qty-alexandria">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('alexandria', 1)">+</button>
+                </div>
             </div>
-            <div class="card-promo" data-price="95000">
+
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Nishane/456-a-nishane_nefs_extrait_50ml_unisex.jpg" alt="Nefs">
                 <h4>Nefs Extrait</h4>
-                <p>Precio: $95.000</p>
-                <button class="btn-add" onclick="agregarAlCarrito(95000)">Agregar +</button>
+                <p class="precio">$95.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('nefs', -1)">-</button>
+                    <span id="qty-nefs">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('nefs', 1)">+</button>
+                </div>
             </div>
+
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Nishane/2152-a-hacivat-x-100ml.jpg" alt="Hacivat">
+                <h4>Hacivat</h4>
+                <p class="precio">$80.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('hacivat', -1)">-</button>
+                    <span id="qty-hacivat">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('hacivat', 1)">+</button>
+                </div>
+            </div>
+
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Xerjoff/Erba Pura.jpg" alt="Erba Pura">
+                <h4>Erba Pura</h4>
+                <p class="precio">$110.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('erbapura', -1)">-</button>
+                    <span id="qty-erbapura">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('erbapura', 1)">+</button>
+                </div>
+            </div>
+
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Initio/ps1399-a_1.jpg" alt="Oud Greatness">
+                <h4>Oud Greatness</h4>
+                <p class="precio">$130.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('oud', -1)">-</button>
+                    <span id="qty-oud">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('oud', 1)">+</button>
+                </div>
+            </div>
+
+            <div class="card-promo">
+                <img src="imagenes/Perfumes Bond No. 9/2206-a-bleecker-street-100ml.jpg" alt="Bleecker">
+                <h4>Bleecker St</h4>
+                <p class="precio">$105.000</p>
+                <div class="controles-cantidad">
+                    <button class="btn-qty" onclick="cambiarCantidad('bleecker', -1)">-</button>
+                    <span id="qty-bleecker">0</span>
+                    <button class="btn-qty" onclick="cambiarCantidad('bleecker', 1)">+</button>
+                </div>
+            </div>
+
         </div>
 
         <div class="carrito-resumen">
-            <h3>Tu Resumen</h3>
+            <h3>🛒 Tu Carrito</h3>
             <p>Subtotal: <span id="subtotal">$0</span></p>
-            <p id="msg-descuento" class="oculto">Descuento aplicado: <span id="monto-descuento">-$0</span></p>
-            <p class="total-big">Total: <span id="total-final">$0</span></p>
-            <button id="btn-reset" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <p id="msg-descuento" class="oculto" style="color: green; font-weight: bold;">
+                🎉 Descuento aplicado: <span id="monto-descuento">-$0</span>
+            </p>
+            <p class="total-big">Total a Pagar: <span id="total-final">$0</span></p>
+            <button id="btn-reset" onclick="vaciarCarrito()" style="background:#333; color:white; padding:10px 20px; border:none; border-radius:5px; margin-top:10px; cursor:pointer;">
+                Vaciar Carrito
+            </button>
         </div>
 
-        <div class="cuponera-activa">
-            <h3>Mis Cupones Disponibles</h3>
-            <button class="btn-cupon" onclick="aplicarCupon(10)">Aplicar CUPON10 (10%)</button>
-            <button class="btn-cupon" onclick="aplicarCupon(20)">Aplicar VERANO20 (20%)</button>
+        <div class="cuponera-activa" style="margin-top: 40px;">
+            <h3>👇 Click para aplicar descuento al carrito</h3>
+            <div class="cuponera-grid">
+                
+                <div class="cupon" onclick="aplicarCupon(10)" style="cursor: pointer; border-color: #28a745;">
+                    <div class="cupon-info">
+                        <h3>CUPON10</h3>
+                        <p>Aplicar 10% de descuento</p>
+                    </div>
+                </div>
+
+                <div class="cupon" onclick="aplicarCupon(20)" style="cursor: pointer; border-color: #d4af37;">
+                    <div class="cupon-info">
+                        <h3>VERANO20</h3>
+                        <p>Aplicar 20% de descuento</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <footer class="simple-footer">
         <div class="footer-features">
-            <div class="footer-feature">
-                <p>Envíos a todo el país</p>
-            </div>
-            <div class="footer-feature">
-                <p>Fragancias 100% originales</p>
-            </div>
-            <div class="footer-feature">
-                <p>Atención personalizada</p>
-            </div>
+            <div class="footer-feature"><p>Envíos a todo el país</p></div>
+            <div class="footer-feature"><p>Fragancias 100% originales</p></div>
+            <div class="footer-feature"><p>Atención personalizada</p></div>
         </div>
         <div class="footer-bottom">
             <h3>Giza</h3>

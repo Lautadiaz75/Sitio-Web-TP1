@@ -599,3 +599,77 @@ section.cuponera-container {
 }
 
 .oculto { display: none; }
+
+/* --- ESTILOS DE NOTIFICACIÓN FLOTANTE (TOAST) --- */
+.toast-oculto {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 30px; /* A la izquierda */
+    bottom: 30px;
+    font-size: 17px;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+}
+
+.toast-visible {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px; /* Pequeña animación hacia arriba */
+}
+
+/* --- AJUSTES DE LAS TARJETAS CON FOTOS --- */
+.card-promo {
+    width: 220px;
+    text-align: center;
+    /* Aseguramos que las tarjetas se vean bien alineadas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-promo img {
+    width: 100%;
+    height: 180px; /* Altura fija para que todas sean iguales */
+    object-fit: cover; /* Recorta la imagen para que no se deforme */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* --- CONTROLES DE CANTIDAD (+ y -) --- */
+.controles-cantidad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-qty {
+    background-color: #e0e0e0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-qty:hover {
+    background-color: #d4af37;
+    color: white;
+}
+
+.controles-cantidad span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    min-width: 20px;
+}
