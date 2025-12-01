@@ -7,6 +7,7 @@
     <title>Perfumeria | Promociones</title>
 </head>
 <body>
+    
     <div class="navbar">
         <div class="logo">
             <img src="imagenes\Landing Page\minilogo2.png" alt="logo" width="75px">
@@ -72,29 +73,37 @@
             </div>
 
         </div>
-        
-        <div class="calculadora-promo">
-            <h3>Calcula tu Ahorro al Instante</h3>
-            <div class="calculadora-form">
-                <div class="input-group">
-                    <label for="monto">Monto Original del Producto ($)</label>
-                    <input type="number" id="monto" placeholder="Ej: 50000">
-                </div>
-                <div class="input-group">
-                    <label for="descuento">Porcentaje de Descuento (%)</label>
-                    <input type="number" id="descuento" placeholder="Ej: 10">
-                </div>
-                <button id="btn-calcular">Calcular</button>
+    </section>
+
+    <section class="mini-shop-container">
+        <h2>Arma tu pedido y aplica tu cupón</h2>
+
+        <div class="productos-promo-grid">
+            <div class="card-promo" data-price="120000">
+                <h4>Alexandria II</h4>
+                <p>Precio: $120.000</p>
+                <button class="btn-add" onclick="agregarAlCarrito(120000)">Agregar +</button>
             </div>
-            
-            <div id="resultado-calculadora" class="resultado-oculto">
-                <p>Total sin descuento: <span id="total-original">$0.00</span></p>
-                <p>Descuento aplicado: <span id="descuento-aplicado">$0.00</span></p>
-                <h4>Total con descuento: <span id="precio-final">$0.00</span></h4>
+            <div class="card-promo" data-price="95000">
+                <h4>Nefs Extrait</h4>
+                <p>Precio: $95.000</p>
+                <button class="btn-add" onclick="agregarAlCarrito(95000)">Agregar +</button>
             </div>
-            
         </div>
-        
+
+        <div class="carrito-resumen">
+            <h3>Tu Resumen</h3>
+            <p>Subtotal: <span id="subtotal">$0</span></p>
+            <p id="msg-descuento" class="oculto">Descuento aplicado: <span id="monto-descuento">-$0</span></p>
+            <p class="total-big">Total: <span id="total-final">$0</span></p>
+            <button id="btn-reset" onclick="vaciarCarrito()">Vaciar Carrito</button>
+        </div>
+
+        <div class="cuponera-activa">
+            <h3>Mis Cupones Disponibles</h3>
+            <button class="btn-cupon" onclick="aplicarCupon(10)">Aplicar CUPON10 (10%)</button>
+            <button class="btn-cupon" onclick="aplicarCupon(20)">Aplicar VERANO20 (20%)</button>
+        </div>
     </section>
 
     <footer class="simple-footer">
@@ -114,6 +123,7 @@
             <p>&copy; 2025 Giza. Todos los derechos reservados.</p>
         </div>
     </footer>
+
     <script src="promociones.js"></script>
 </body>
 </html>
