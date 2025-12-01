@@ -11,6 +11,9 @@ body {
     flex-direction: column;
     min-height: 100vh; /* 100% de la altura del Viewport (ventana) */
 }
+#actual{
+    color: goldenrod;
+}
 
 a {
     text-decoration: none;
