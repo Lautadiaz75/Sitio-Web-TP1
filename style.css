@@ -11,9 +11,12 @@ body {
     flex-direction: column;
     min-height: 100vh; /* 100% de la altura del Viewport (ventana) */
 }
-#actual{
-    color: goldenrod;
+#actual {
+    color: #d4af37;
+    font-weight: bold;
+    border-bottom: 2px solid #d4af37; 
 }
+
 
 a {
     text-decoration: none;
